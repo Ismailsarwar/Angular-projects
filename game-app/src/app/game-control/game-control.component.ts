@@ -7,23 +7,28 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class GameControlComponent implements OnInit {
   @Output() intervalFired = new EventEmitter<number>();
+  @Output() intervalRemoved = new EventEmitter<[]>;
   interval;
   lastNumber = 0;
 
   constructor() {}
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   onGameStart() {
     this.interval = setInterval(() => {
       this.intervalFired.emit(this.lastNumber + 1);
       this.lastNumber++;
-    }, 1000)
+    }, 500)
   }
 
   onGamePause() {
     clearInterval(this.interval);
+  }
+
+  onGameReset() {
+    this.intervalFired.emit(this.lastNumber = 0);
+    clearInterval(this.interval);
+    this.intervalRemoved.emit([])
   }
 }

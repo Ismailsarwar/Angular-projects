@@ -1,1 +1,8 @@
-<p>Even numbers {{ number }}</p>
+
+<div *ngIf="number % 2 == 0; else oddNumber">
+    <p>Even Number - [{{ number }}]</p>
+</div>
+
+<ng-template style="color: white;" #oddNumber>
+    <p class="color-black">Odd Number - ({{ number }})</p>
+</ng-template>
