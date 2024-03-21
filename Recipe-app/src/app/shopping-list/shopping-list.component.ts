@@ -5,12 +5,12 @@ import { ShoppingListService } from './shopping-list.service';
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrl: './shopping-list.component.css'
+  styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
   ingredients: Ingredient[];
 
-  constructor(private slService: ShoppingListService) {}
+  constructor(private slService: ShoppingListService) { }
 
   ngOnInit() {
     this.ingredients = this.slService.getIngredients();
@@ -19,7 +19,6 @@ export class ShoppingListComponent implements OnInit {
       (ingredients: Ingredient[]) => {
         this.ingredients = ingredients;
       }
-    )
+    );
   }
-
 }
